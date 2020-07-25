@@ -1,0 +1,118 @@
+* MAX4478MACROMODEL
+* ----------------------------
+* Revision 0. 5/2004
+* ----------------------------
+* The MAX4478 wideband, low noise, low distortion opamps operates from single 
+* +2.7V to 5.5V Supply, feature ground sensing inputs and rail to rail outputs
+* and are unity gain stable
+* ----------------------------
+* Connections
+*      1  = OUT1 
+*      2  = IN1-
+*      3  = IN1+
+*      4  = VDD 
+*      5  = IN2+
+*      6  = IN2-
+*      7  = OUT2
+*      8  = OUT3
+*      9  = IN3-
+*      10 = IN3+
+*      11 = VSS
+*      12 = IN4+
+*      13 = IN4-
+*      14 = OUT4
+*-----------------------------
+
+**************************************************
+.SUBCKT MAX4478 1 2 3 4 5 6 7 8 9 10 11 12 13 14
+ XOPAMP1 1 2 3 4 11 MAX4478_S
+ XOPAMP2 7 6 5 4 11 MAX4478_S
+ XOPAMP3 8 9 10 4 11 MAX4478_S
+ XOPAMP4 14 13 12 4 11 MAX4478_S
+.ENDS
+**************************************************
+.SUBCKT MAX4478_S 31 15 17 10 18
+**************************************************
+*    17 = IN+
+*    18 = V-
+*    15 = IN-
+*    31 = OUT
+*    10 = V+
+***************
+*INPUT STAGE
+VS1 10 11 0V
+IBIAS 11 12 45.25U 
+M1 13 16 12 11 MOSFET
+M2 14 15 12 11 MOSFET
+VOS 17 16 70U
+RD1 13 18 1K    
+RD2 14 18 1K
+C1 13 14 2.0P
+CIN1 16 100 10P
+CIN2 15 100 10P     
+DIN1 16 11 DA
+DIN2 18 16 DA
+DIN3 15 11 DA
+DIN4 18 15 DA
+FSUP 18 10 VS1 1 
+**************
+*INPUT BIAS CURRENT 
+IBIAS1 12 16 0.1P
+IBIAS2 12 15 0.1P
+RID 15 16 1000G 
+**************
+**************************************************
+*GAIN STAGE 
+GA 25 100 14 13 5.105M  
+RO1 25 100 2.541K
+GB 26 100 25 100 710M
+RO2 26 100 1K
+EF 27 100 26 100 1
+CC 25 27 70P
+EF2 29 100 28 100 1   
+GC 100 28 26 100 52.16M
+RO3 28 100 2.7K
+CC2 25 29 77.3P
+RO4 28 30 20
+GCMPS 100 25 40 100 393.5U 
+**************
+*CURRENT LIMIT
+DP3 26 38 DY
+EP3 38 100 10 18 185M
+DP4 39 26 DY
+EP4 100 39 10 18 185M
+**************
+*INTERNAL GND
+EG1 100 18 10 18 0.5
+**************
+*VOLTAGE LIMITING
+VS2 30 31 0V
+*****
+DP1 30 32 DY 
+HP1 34 32 VS2 17.72
+EP1 34 36 10 18 0.5
+VOFF1 100 36 12M
+*****
+DP2 33 30 DY
+HP2 35 33 VS2 14.43
+EP2 37 35 10 18 0.5
+VOFF2 37 100 12.8M
+***************
+*CMRR
+RRR 40 100 1
+GCMR 40 100 12 18 23.07U
+*PSRR
+GPSR 100 40 10 18 24.5U
+***************
+*SUPPLY CURRENT
+ISUP 10 18 2.5M
+**************************************************
+.MODEL DA D(IS=100E-14 RS=0.5k)
+.MODEL MOSFET PMOS(VTO=-0.2 KP=22.1E-3 KF=4.0E-27 AF=0.8)
+.MODEL DX D(IS=100E-14)
+.MODEL DY D(IS=100E-14 N=10M)
+**************************************************
+.ENDS
+
+
+* Copyright (c) 2003-2012 Maxim Integrated Products.  All Rights Reserved.

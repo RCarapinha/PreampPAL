@@ -1,0 +1,54 @@
+Circuit: * C:\Users\Carapinha\OneDrive - Universidade de Aveiro\UA\Agora\Meu\PEE\Team Pre-Amp\Simulações PreAmp\Eu\Draft1.asc
+
+WARNING: Node VOUT is floating.
+
+WARNING: Less than two connections to node NC_01.  This node is used by V:U1:OPAMP2:OS.
+WARNING: Less than two connections to node NC_03.  This node is used by V:U1:OPAMP2:S2.
+WARNING: Less than two connections to node NC_04.  This node is used by V:U1:OPAMP4:OS.
+WARNING: Less than two connections to node NC_06.  This node is used by V:U1:OPAMP4:S2.
+WARNING: Less than two connections to node VOUT.  This node is used by C7.
+Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
+Starting Gmin stepping
+Gmin = 10
+vernier = 0.5
+vernier = 0.25
+vernier = 0.125
+Gmin = 6.49
+vernier = 0.0625
+vernier = 0.03125
+vernier = 0.015625
+vernier = 0.0078125
+Gmin = 6.61506
+vernier = 0.00390625
+vernier = 0.00195313
+vernier = 0.000976563
+vernier = 0.000488281
+Gmin = 0
+Gmin = 0
+Gmin stepping failed
+
+Starting source stepping with srcstepmethod=0
+Source Step = 3.0303%
+Source Step = 33.3333%
+Source Step = 63.6364%
+Source Step = 93.9394%
+Source stepping succeeded in finding the operating point.
+
+
+Date: Tue May 15 17:09:55 2018
+Total elapsed time: 1.576 seconds.
+
+tnom = 27
+temp = 27
+method = trap
+totiter = 1698
+traniter = 0
+tranpoints = 0
+accept = 0
+rejected = 0
+matrix size = 177
+fillins = 140
+solver = Normal
+Matrix Compiler1:     838 opcodes
+Matrix Compiler2: 17.55 KB object code size  9.1/12.8/[4.3]
+
